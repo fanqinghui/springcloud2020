@@ -1,0 +1,5 @@
+com/fqh/cloud/order/OrderHystrixApplication.class
+com/fqh/cloud/order/service/impl/PaymentFeignServiceImpl.class
+com/fqh/cloud/order/controller/OrderController.class
+com/fqh/cloud/order/config/FeignConfig.class
+com/fqh/cloud/order/service/PaymentFeignService.class

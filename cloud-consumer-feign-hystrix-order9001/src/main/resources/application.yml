@@ -1,0 +1,33 @@
+server:
+  port: 9001
+
+
+spring:
+  application:
+    name: cloud-consumer-feign-histrix-order
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+  instance:
+    instance-id: cloud-consumer-feign-order9001 #实例ID
+    prefer-ip-address: true #访问显示主机IP地址
+#设置feign客户端的超时时间（openFeign默认支持ribbon）
+ribbon:
+  #简历连接所用的时间，适用于网络正常的清洗，两端连接所用的时间
+  ReadTimeout: 5000
+  #指的是简历连接后从服务器读取到可用资源所用的时间
+  ConnectionTimeout: 5000
+
+
+logging:
+  level:
+    com.fqh.cloud.order.service.PaymentFeignService: debug
+
+# 配置在feign里启动Hystrix--默认为false不起的
+feign:
+  hystrix:
+    enabled: true

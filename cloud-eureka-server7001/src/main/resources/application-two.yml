@@ -1,0 +1,23 @@
+---
+server:
+  port: 7001
+spring:
+  profiles: peer1
+eureka:
+  instance:
+    hostname: peer1
+  client:
+    serviceUrl:
+      defaultZone: http://peer2:7002/eureka/
+
+---
+server:
+  port: 7002
+spring:
+  profiles: peer2
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:7001/eureka/

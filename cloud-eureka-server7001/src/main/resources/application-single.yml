@@ -1,0 +1,13 @@
+server:
+  port: 7001
+#Standalone Mode
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    #false表示不需要向注册中心注册自己
+    register-with-eureka: false
+    #false表示自己就是注册中心，我的职责就是维护服务实例，不需要去拉取注册服务。
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

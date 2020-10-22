@@ -1,0 +1,10 @@
+#eureka 自我保护机制
+为了防止EurekClinet可以正常运行，但是与EureKaServer网络不连通的情况下，eureka不会立刻将
+EurekaClient服务剔除
+
+默认情况下，eurekaclient客户端会定时（90s）秒向eurekaServer发送心跳包，如果eurekaServer没有收到心跳包，
+便会直接从服务注册列表中剔除该服务，但如果短时间内（90s）丢失了大量服务实例心态，会开启
+eureka的自我保护机制，开启保护机制以后将不会剔除服务实例
+
+eurekaServer的自我保护模式是一种应对网络异常的安全保护措施，架构的哲学是：宁可同时保留所有微服务，也不
+盲目剔除任何健康的微服务，使用自我保护模式可以是Eureka集群更加健壮与稳定

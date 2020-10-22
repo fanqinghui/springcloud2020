@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: cloud-payment-service8004
+  cloud:
+    zookeeper:
+      connect-string: localhost:2181
+  profiles:
+    active: 8004
+---
+server:
+  port: 8004
+spring:
+  profiles: 8004
+
+---
+server:
+  port: 8005
+spring:
+  profiles: 8005

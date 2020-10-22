@@ -1,0 +1,17 @@
+server:
+  port: 9001
+
+
+spring:
+  application:
+    name: cloud-consumer-ribbonrule-order
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka/
+  instance:
+    instance-id: cloud-consumer-ribbonrule-order9001 #实例ID
+    prefer-ip-address: true #访问显示主机IP地址

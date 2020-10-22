@@ -1,0 +1,6 @@
+/Users/fanqinghui/learn/马士兵架构师/springcloud-project/springCloud/cloud-consumer-ribbon-order9001/src/main/java/com/fqh/cloud/order/controller/OrderController.java
+/Users/fanqinghui/learn/马士兵架构师/springcloud-project/springCloud/cloud-consumer-ribbon-order9001/src/main/java/com/fqh/cloud/order/OrderApplication.java
+/Users/fanqinghui/learn/马士兵架构师/springcloud-project/springCloud/cloud-consumer-ribbon-order9001/src/main/java/com/fqh/cloud/order/config/RestTemplateConfig.java
+/Users/fanqinghui/learn/马士兵架构师/springcloud-project/springCloud/cloud-consumer-ribbon-order9001/src/main/java/com/fqh/cloud/order/loadBalancer/MyLoadBalancer.java
+/Users/fanqinghui/learn/马士兵架构师/springcloud-project/springCloud/cloud-consumer-ribbon-order9001/src/main/java/com/fqh/cloud/order/loadBalancer/LoadBalancer.java
+/Users/fanqinghui/learn/马士兵架构师/springcloud-project/springCloud/cloud-consumer-ribbon-order9001/src/main/java/com/fqh/cloud/ribbonrule/MyRibbonRule.java
