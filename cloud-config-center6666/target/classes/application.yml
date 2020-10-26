@@ -1,0 +1,41 @@
+server:
+  port: 6666
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/
+  instance:
+    instance-id: cloud-config-center6666 #实例ID
+    prefer-ip-address: true #访问显示主机IP地址
+
+
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          uri: git@github.com:fanqinghui/cloud-config.git  #github git仓库名字
+          #uri: https://github.com/fanqinghui/cloud-config.git
+          #username: fanqinghui
+          #password: 123abcABC!
+          search-paths:
+            - cloud-config  #搜索目录
+      label: master #读取分支
+  #增加rabbitMq
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+# rabbitMq 相关配置，暴露bus刷新配置的断点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'

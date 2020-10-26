@@ -25,8 +25,23 @@
     <module>cloud-actuator-hystrix-dashboard9999</module>
 
     <module>cloud-api-common</module>
+    <!--eureka-->
     <module>cloud-eureka-server7001</module>
+    <!--gateway-->
     <module>cloud-gateway-gateway9527</module>
+    <!--config-->
+    <module>cloud-config-center6666</module>
+    <module>cloud-config-client6677</module>
+    <module>cloud-config-client-bus6688</module>
+    <module>cloud-stream-rabbitmq-provider8801</module>
+    <module>cloud-stream-rabbitmq-consumer8802</module>
+    <!--cloud-alibaba-config-->
+    <module>cloud-alibaba-config-client6677</module>
+    <!--cloud-alibaba-nacos-->
+    <module>cloud-alibaba-nacos-payment-provider8001</module>
+    <module>cloud-alibaba-nacos-order-provider9001</module>
+
+
   </modules>
 
 
@@ -54,6 +69,7 @@
 
     <spring.boot.version>2.2.2.RELEASE</spring.boot.version>
     <spring.cloud.version>Hoxton.SR1</spring.cloud.version>
+    <spring.cloud.alibaba.version>2.2.1.RELEASE</spring.cloud.alibaba.version>
   </properties>
 
   <!-- 子模块继承之后，提供作用：锁定版本+子modlue不用写groupId和version  -->
@@ -82,14 +98,15 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <!--spring cloud alibaba 2.1.0.RELEASE-->
+      <!--spring cloud alibaba 2.2.1.RELEASE-->
       <dependency>
         <groupId>com.alibaba.cloud</groupId>
         <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-        <version>2.1.0.RELEASE</version>
+        <version>${spring.cloud.alibaba.version}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
       <dependency>
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
@@ -139,3 +156,4 @@
   </build>
 
 </project>
+

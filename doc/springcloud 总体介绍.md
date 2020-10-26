@@ -95,3 +95,93 @@ feign的日志级别
 ## 3自定义过滤器（）
  - implement GloabFilter，Ordered 实现filter与order两个方法
  - 
+ 
+ ## 配置中心
+ 1. config
+ 2. nacos
+ 
+ 
+ config动态刷新配置：
+ 1. pom里需要有
+ ```
+<dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+```
+2. yml文件增加配置
+```
+#暴露监控断点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+```
+3. 配置类增加 @RefreshScope 注解
+ 问题: 更改配置无法做到动态刷新，需要手动更新，无法做到大范围的广播式的更新： 
+```
+ curl -X POST "http://localhost:6677/actuator/refresh"
+```
+需要引入消息总线来解决
+
+ #消息总线 Bus
+ 微服务架构中，通常会使用轻量级的消息代理来构建一个公用的消息主体，让所有系统中的微服务实例都连接上来，
+ 这样该主题产生的消息会被所有实例监听和消费，所以称它为消息总线。
+ 将分布式系统的节点与轻量级消息系统链接起来的框架，整合了java的时间处理机制与消息中间件的功能
+ spring cloud bus支持RabbitMq与Kafka，spring cloud alibaba还支持rocketMq
+ #### 基本原理
+ ConfigClient实例都监听Mq中同一个tipic（topic名字：springcloudBus），当一个服务刷新数据的时候，他会将这个消息放到Topic中，
+ 这样其它监听统一Topic的服务就能得到通知，然后去更新自身的配置。
+ #### 配置中心与消息总线实现方案
+ 1. 用总线去通知每个微服务实例。。==微服务太多的情况下比较难办，而且让微服务承担了业务以外的功能
+ 2. （优势方案）让configServer（6666）去做通知服务，只通知（curl）configServer，让configServer去通知configClient
+ #### 消息总线配置-例如rabbitMq
+ 1. server与config的pom.xml引入amqp
+ ```
+<!--cloud bus 消息总线端rabbitMq-->
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-bus-amqp</artifactId>
+</dependency>
+```
+2. yml中增加mq连接配置与监控点信息
+```
+  #增加rabbitMq
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+# rabbitMq 相关配置，暴露bus刷新配置的断点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'
+```
+3. 配置中心curl,这样所有config client都可以实时刷新配置
+```
+curl -X POST "http://locclhost:6666/actuator/bus-refresh"
+```
+
+## 配置中心与服务总线如何做到定点通知(curl bus-refresh/{destination})
+destination：是微服务名字:具体端口号,例如cloud-config-client:6688
+``
+curl -X POST "http://localhost:6666/actuator/bus-refresh/cloud-config-client:6688"
+``
+#cloud stream 消息驱动
+stream的目的是屏蔽底层消息中间件的差异，降低切换成本，统一消息的编程模型
+目前只支持 rabbitMq与Kafka
+stream默认遵循发布订阅形式进行消息通信，rabbitMq使用exchange，kafka使用topic
+
+
+yml文件里的group属性非常重要：支持持久化与避免消息幂等重复消费
+
+# cloud Sleuth 分布式请求,链路追踪
+如果微服务直接调用的过多，一个请求调用了多个服务，如果请求遇到问题，就需要一套链路追踪解决方案
+zipkin负责进行展示,zipkin是个jar，可以执行java -jar zipkin-server.jar 在控制台用
+localhost:9411在控制台里打开控制台查看链路
+

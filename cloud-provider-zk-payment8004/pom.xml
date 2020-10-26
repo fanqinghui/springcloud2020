@@ -12,8 +12,6 @@
   <artifactId>cloud-provider-zk-payment8004</artifactId>
 
   <dependencies>
-
-
     <dependency>
       <groupId>com.fqh.cloud</groupId>
       <artifactId>cloud-api-common</artifactId>

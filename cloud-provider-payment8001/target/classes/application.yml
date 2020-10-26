@@ -10,6 +10,11 @@ spring:
     password: 123abcABC!
   profiles:
     active: 8001
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      probability: 1 # 0-1 之间的值，1表示全部采样
 
 
 mybatis:

@@ -65,4 +65,13 @@ public class OrderController {
 
     return services;
   }
+
+  //zipkin+sleuth链路追踪
+  @GetMapping("/payment/zipkin")
+  public String paymentZipkin(){
+    String result = restTemplate
+        .getForObject(Payment_server_URL + "/payment/zipkin", String.class);
+    return result;
+  }
+
 }

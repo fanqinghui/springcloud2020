@@ -1,0 +1,28 @@
+
+spring:
+  application:
+    name: nacos-payment-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  profiles:
+    active: 8001
+
+#暴露监控断点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+---
+server:
+  port: 8001
+spring:
+  profiles: 8001
+---
+server:
+  port: 8002
+spring:
+  profiles: 8002

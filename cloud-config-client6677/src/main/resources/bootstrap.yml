@@ -1,0 +1,38 @@
+# bootstrap.yml是系统级别的配置文件，比application.yml 用户级别的配置文件加载顺序更高
+server:
+  port: 6677
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:7001/eureka/,http://localhost:7002/eureka/
+  instance:
+    instance-id: cloud-config-client6677 #实例ID
+    prefer-ip-address: true #访问显示主机IP地址
+
+
+spring:
+  application:
+    name: cloud-config-client
+  cloud:
+    config:
+      label: master #读取分支
+      name: config #配置文件名字
+      profile: prod #读取后缀名称
+      #以上三个综合，读取 master分支上的名字为config（文件）-dev.yml（后缀）的为准文件
+      #http://localhost:6666/master/config-dev.yml
+      uri: http://localhost:6666
+  #增加rabbitMq
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+#暴露监控断点
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"

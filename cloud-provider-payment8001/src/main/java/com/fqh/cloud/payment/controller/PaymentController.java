@@ -52,4 +52,8 @@ public class PaymentController {
         }
     }
 
+    @GetMapping("zipkin")
+    public String paymentZipkin(){
+        return "hi,i'm paymentzipkin server fall back.";
+    }
 }
