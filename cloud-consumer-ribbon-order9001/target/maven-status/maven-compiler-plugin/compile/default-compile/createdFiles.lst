@@ -1,6 +1,0 @@
-com/fqh/cloud/order/controller/OrderController.class
-com/fqh/cloud/order/loadBalancer/LoadBalancer.class
-com/fqh/cloud/ribbonrule/MyRibbonRule.class
-com/fqh/cloud/order/OrderApplication.class
-com/fqh/cloud/order/config/RestTemplateConfig.class
-com/fqh/cloud/order/loadBalancer/MyLoadBalancer.class

@@ -1,5 +1,0 @@
-/Users/fanqinghui/learn/马士兵架构师/springcloud-project/springCloud/cloud-consumer-feign-hystrix-order9001/src/main/java/com/fqh/cloud/order/OrderHystrixApplication.java
-/Users/fanqinghui/learn/马士兵架构师/springcloud-project/springCloud/cloud-consumer-feign-hystrix-order9001/src/main/java/com/fqh/cloud/order/service/impl/PaymentFeignServiceImpl.java
-/Users/fanqinghui/learn/马士兵架构师/springcloud-project/springCloud/cloud-consumer-feign-hystrix-order9001/src/main/java/com/fqh/cloud/order/config/FeignConfig.java
-/Users/fanqinghui/learn/马士兵架构师/springcloud-project/springCloud/cloud-consumer-feign-hystrix-order9001/src/main/java/com/fqh/cloud/order/controller/OrderController.java
-/Users/fanqinghui/learn/马士兵架构师/springcloud-project/springCloud/cloud-consumer-feign-hystrix-order9001/src/main/java/com/fqh/cloud/order/service/PaymentFeignService.java
